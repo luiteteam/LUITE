@@ -63,7 +63,7 @@ function Home() {
       <Box
         sx={{
           position: 'relative',
-          backgroundImage: 'url(/hero.jpg)', // Change to your preferred image
+          backgroundImage: 'url(/hero1.jpg)',
           backgroundSize: 'cover',
           backgroundPosition: 'center',
           backgroundRepeat: 'no-repeat',
@@ -71,7 +71,8 @@ function Home() {
           py: { xs: 8, md: 35 },
           textAlign: 'center',
           mb: 8,
-          height: '100vh',
+          height: { xs: '100vh', md: '100vh' },
+          minHeight: { xs: '70vh', md: '100vh' },
           display: 'flex',
           alignItems: 'center',
           justifyContent: 'center',
@@ -84,25 +85,60 @@ function Home() {
           left: 0,
           width: '100%',
           height: '100%',
-          bgcolor: 'rgba(40,40,40,0.6)',
           zIndex: 1,
         }} />
         {/* Content */}
-        <Box sx={{ position: 'relative', zIndex: 2, width: '100%' }}>
-          <Typography variant="h2" sx={{ fontWeight: 700, mb: 2 }}>
-            LUITE
+        <Box sx={{
+          position: 'relative',
+          zIndex: 2,
+          width: '100%',
+          maxWidth: { xs: '95vw', sm: 500, md: 700 },
+          mx: 'auto',
+          textAlign: { xs: 'left', md: 'left' },
+          px: { xs: 2, sm: 3, md: 0 },
+        }}>
+          <Typography variant="subtitle1" sx={{ color: 'green', fontWeight: 700, mb: 2, letterSpacing: 1, fontSize: { xs: '0.75rem', sm: '1.1rem' } }}>
+            EMPOWERING DIGITAL INNOVATION
           </Typography>
-          <Typography variant="h4" sx={{ mb: 4, fontWeight: 400, opacity: 0.95 }}>
-            Empowering Digital Transformation
+          <Typography
+            variant="h2"
+            sx={{
+              fontWeight: 700,
+              mb: 2,
+              color: 'black',
+              fontSize: { xs: '2rem', sm: '2.5rem', md: '3.5rem' },
+              lineHeight: 1.1,
+            }}
+          >
+            Your vision.<br />Our expertise.<br />Let's build the future together.
+          </Typography>
+          <Typography
+            variant="body1"
+            sx={{
+              mb: 4,
+              color: 'black',
+              fontSize: { xs: '1rem', sm: '1.1rem', md: '1.25rem' },
+              maxWidth: { xs: '100%', sm: 500 },
+              mx: { xs: 'auto', md: 0 },
+            }}
+          >
+            At LUITE, we make digital transformation simple. Our team helps you turn ideas into reality with custom software, web, and mobile solutions tailored to your goals.
           </Typography>
           <Button
             variant="contained"
             color="primary"
             size="large"
             href="/contact"
-            sx={{ fontWeight: 600, px: 5, py: 1.5 }}
+            sx={{
+              fontWeight: 600,
+              px: { xs: 0, sm: 5 },
+              py: 1.5,
+              width: { xs: '100%', sm: 'auto' },
+              fontSize: { xs: '1rem', sm: '1.1rem' },
+              mt: { xs: 2, sm: 0 },
+            }}
           >
-            Contact Us
+            Let's Get Started
           </Button>
         </Box>
       </Box>
