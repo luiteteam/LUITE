@@ -14,18 +14,21 @@ const teamMembers = [
     instagram: '',
     facebook: '',
     x: '',
-    team: 'Executive Leadership',
+    team: 'Engineering Team',
   },
   {
     name: 'Viraj Sonowal',
     role: 'Full Stack Developer',
+    img: '/viraj.jpg',
     // linkedin: '',
+    team: 'Engineering Team',
   },
   {
     name: 'Siddhartha Sonowal',
     role: 'Frontend Developer',
     // img: '',
     // linkedin: '',
+    team: 'Engineering Team',
   },
   {
     name: 'Niraj Nil Dutta',
@@ -82,29 +85,22 @@ function TeamCard({ member }) {
 }
 
 function Team() {
-  // Group members by team
-  const teams = Array.from(new Set(teamMembers.map(m => m.team)));
-
   return (
     <Box>
       <Container sx={{ pt: 8, pb: 4 }}>
-        {teams.map((teamName) => (
-          <Box key={teamName} sx={{ mb: 8 }}>
-            <Typography variant="h3" align="center" sx={{ fontWeight: 700, mb: 1 }}>
-              {teamName}
-            </Typography>
-            <Typography align="center" variant="h6" sx={{ mb: 6, fontWeight: 400 }}>
-              Meet our outstanding team – a synergy of talent, creativity, and dedication, crafting success together.
-            </Typography>
-            <Grid container spacing={4} justifyContent="center">
-              {teamMembers.filter(m => m.team === teamName).map((member, idx) => (
-                <Grid item xs={12} sm={6} md={4} lg={3} key={member.name + idx}>
-                  <TeamCard member={member} />
-                </Grid>
-              ))}
+        <Typography variant="h3" align="center" sx={{ fontWeight: 700, mb: 1 }}>
+          Our Team
+        </Typography>
+        <Typography align="center" variant="h6" sx={{ mb: 6, fontWeight: 400 }}>
+          Meet our outstanding team – a synergy of talent, creativity, and dedication, crafting success together.
+        </Typography>
+        <Grid container spacing={4} justifyContent="center">
+          {teamMembers.map((member, idx) => (
+            <Grid item xs={12} sm={6} md={4} lg={3} key={member.name + idx}>
+              <TeamCard member={member} />
             </Grid>
-          </Box>
-        ))}
+          ))}
+        </Grid>
       </Container>
     </Box>
   );
