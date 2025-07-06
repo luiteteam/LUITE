@@ -264,7 +264,7 @@ function Navbar() {
                     }
                   }}
                   sx={{
-                    color: isActive(item.path) ? '#589bfb' : '#282828',
+                    color: isActive(item.path) ? '#589bfb' : '#a0a0a0',
                     fontWeight: isActive(item.path) ? 'bold' : 'normal',
                     py: 1.2,
                     justifyContent: 'center',
@@ -297,7 +297,7 @@ function Navbar() {
                         to={subItem.path}
                         sx={{ 
                           pl: 4,
-                          color: '#282828',
+                          color: '#a0a0a0',
                           '&.active': { color: '#589bfb', fontWeight: 'bold' },
                           '&:hover': { 
                             color: '#589bfb', 
@@ -320,7 +320,7 @@ function Navbar() {
                 onClick={handleDrawerToggle}
                 sx={{
                   '&.active': { color: '#589bfb', fontWeight: 'bold' },
-                  color: '#282828',
+                  color: '#a0a0a0',
                   py: 1.2,
                   justifyContent: 'center',
                   transition: 'color 0.3s ease',
@@ -343,7 +343,7 @@ function Navbar() {
           onClick={handleDrawerToggle}
           sx={{
             '&.active': { color: '#589bfb', fontWeight: 'bold' },
-            color: '#282828',
+            color: '#a0a0a0',
             py: 1.2,
             justifyContent: 'center',
             transition: 'color 0.3s ease',
