@@ -24,7 +24,7 @@ import { Link as RouterLink, useLocation } from 'react-router-dom';
 
 const aboutMenu = [
   { label: 'Overview', path: '/about#overview' },
-  { label: 'Team', path: '/about#team' },
+  { label: 'Team', path: '/team' },
 ];
 
 const servicesMenu = [
@@ -102,14 +102,14 @@ function Navbar() {
   return (
     <AppBar position="relative" elevation={0} color="default">
       <Toolbar>
-        <Typography
-          variant="h6"
-          component={RouterLink}
-          to="/"
-          sx={{ flexGrow: 1, textDecoration: 'none', color: 'inherit', fontWeight: 700 }}
-        >
-          LUITE
-        </Typography>
+        <RouterLink to="/" style={{ flexGrow: 1, display: 'flex', alignItems: 'center', textDecoration: 'none' }}>
+          <Box
+            component="img"
+            src="/logo.jpg"
+            alt="LUITE Logo"
+            sx={{ height: 48, width: 'auto', display: 'block' }}
+          />
+        </RouterLink>
         {/* Desktop Nav */}
         <Box sx={{ display: { xs: 'none', md: 'flex' }, alignItems: 'center', gap: 1 }}>
           <Button
