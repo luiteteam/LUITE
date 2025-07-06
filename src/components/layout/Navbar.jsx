@@ -6,21 +6,27 @@ import {
   Button,
   Box,
   IconButton,
-  Menu,
-  MenuItem,
   Drawer,
   List,
   ListItem,
   ListItemText,
   Collapse,
   Divider,
-  Avatar
+  Menu,
+  MenuItem
 } from '@mui/material';
 import MenuIcon from '@mui/icons-material/Menu';
+import ContactMailIcon from '@mui/icons-material/ContactMail';
+import HomeIcon from '@mui/icons-material/Home';
+import InfoIcon from '@mui/icons-material/Info';
+import WorkIcon from '@mui/icons-material/Work';
+import FolderIcon from '@mui/icons-material/Folder';
+import PersonIcon from '@mui/icons-material/Person';
+import ArrowDropDownIcon from '@mui/icons-material/ArrowDropDown';
 import ExpandLess from '@mui/icons-material/ExpandLess';
 import ExpandMore from '@mui/icons-material/ExpandMore';
-import ArrowDropDownIcon from '@mui/icons-material/ArrowDropDown';
-import { Link as RouterLink, useLocation } from 'react-router-dom';
+import { NavLink, Link as RouterLink, useLocation } from 'react-router-dom';
+import { styled } from '@mui/material/styles';
 
 const aboutMenu = [
   { label: 'Overview', path: '/about#overview' },
@@ -37,21 +43,160 @@ const servicesMenu = [
 ];
 
 const navItems = [
-  { label: 'Home', path: '/' },
-  { label: 'About', submenu: aboutMenu },
-  { label: 'Services', submenu: servicesMenu },
-  { label: 'Portfolio', path: '/portfolio' },
-  { label: 'Contact', path: '/contact' },
-  { label: 'Career', path: '/career' },
+  { label: 'Home', path: '/', icon: <HomeIcon fontSize="small" sx={{ mr: 1 }} /> },
+  { label: 'About', path: '/about', icon: <InfoIcon fontSize="small" sx={{ mr: 1 }} />, submenu: aboutMenu },
+  { label: 'Services', path: '/services', icon: <WorkIcon fontSize="small" sx={{ mr: 1 }} />, submenu: servicesMenu },
+  { label: 'Portfolio', path: '/portfolio', icon: <FolderIcon fontSize="small" sx={{ mr: 1 }} /> },
+  { label: 'Career', path: '/career', icon: <PersonIcon fontSize="small" sx={{ mr: 1 }} /> },
 ];
+
+const StyledAppBar = styled(AppBar)(({ theme }) => ({
+  background: 'transparent',
+  color: theme.palette.text.primary,
+  padding: '8px 16px',
+  boxShadow: 'none',
+  position: 'relative',
+  animation: 'fadeIn 0.8s ease-in',
+  '@keyframes fadeIn': {
+    from: { opacity: 0, transform: 'translateY(-10px)' },
+    to: { opacity: 1, transform: 'translateY(0)' },
+  },
+}));
+
+const StyledLogo = styled(Box)(({ theme }) => ({
+  display: 'flex',
+  alignItems: 'center',
+  textDecoration: 'none',
+  transition: 'transform 0.3s ease',
+  '&:hover': {
+    transform: 'scale(1.05)',
+  },
+}));
+
+const StyledNavButton = styled(Button)(({ theme }) => ({
+  fontFamily: theme.typography.fontFamily,
+  fontSize: '0.9rem',
+  color: theme.palette.text.primary,
+  background: 'transparent',
+  border: 'none',
+  boxShadow: 'none',
+  margin: theme.spacing(0, 1.2),
+  padding: '6px 12px',
+  minWidth: 'auto',
+  transition: 'color 0.3s ease',
+  textTransform: 'none',
+  '&.active': {
+    color: theme.palette.primary.main,
+    fontWeight: 600,
+  },
+  '&:hover': {
+    color: theme.palette.primary.main,
+    background: 'transparent',
+    boxShadow: 'none',
+  },
+  '&:focus': {
+    background: 'transparent',
+    boxShadow: 'none',
+    outline: 'none',
+  },
+  '&:active': {
+    background: 'transparent',
+    boxShadow: 'none',
+  },
+  '&.Mui-focusVisible': {
+    background: 'transparent',
+    boxShadow: 'none',
+  },
+  // Remove all Material-UI button states
+  '&.MuiButton-root': {
+    '&:hover': {
+      backgroundColor: 'transparent',
+      boxShadow: 'none',
+    },
+    '&:focus': {
+      backgroundColor: 'transparent',
+      boxShadow: 'none',
+    },
+    '&:active': {
+      backgroundColor: 'transparent',
+      boxShadow: 'none',
+    },
+  },
+}));
+
+const StyledContactButton = styled(Button)(({ theme }) => ({
+  fontFamily: theme.typography.fontFamily,
+  fontSize: '0.9rem',
+  color: theme.palette.text.primary,
+  background: 'transparent',
+  border: 'none',
+  boxShadow: 'none',
+  margin: theme.spacing(0, 1.2),
+  padding: '6px 12px',
+  minWidth: 'auto',
+  transition: 'color 0.3s ease',
+  textTransform: 'none',
+  '&.active': {
+    color: theme.palette.primary.main,
+    fontWeight: 600,
+  },
+  '&:hover': {
+    color: theme.palette.primary.main,
+    background: 'transparent',
+    boxShadow: 'none',
+  },
+  '&:focus': {
+    background: 'transparent',
+    boxShadow: 'none',
+    outline: 'none',
+  },
+  '&:active': {
+    background: 'transparent',
+    boxShadow: 'none',
+  },
+  '&.Mui-focusVisible': {
+    background: 'transparent',
+    boxShadow: 'none',
+  },
+  // Remove all Material-UI button states
+  '&.MuiButton-root': {
+    '&:hover': {
+      backgroundColor: 'transparent',
+      boxShadow: 'none',
+    },
+    '&:focus': {
+      backgroundColor: 'transparent',
+      boxShadow: 'none',
+    },
+    '&:active': {
+      backgroundColor: 'transparent',
+      boxShadow: 'none',
+    },
+  },
+}));
+
+const StyledIconButton = styled(IconButton)(({ theme }) => ({
+  color: theme.palette.text.primary,
+  '&:hover': {
+    backgroundColor: 'transparent',
+    color: theme.palette.primary.main,
+  },
+  '&:focus': {
+    backgroundColor: 'transparent',
+  },
+  '&:active': {
+    backgroundColor: 'transparent',
+  },
+}));
 
 function Navbar() {
   const location = useLocation();
-  const [openMenu, setOpenMenu] = useState(null); // 'about' | 'services' | null
+  const [mobileOpen, setMobileOpen] = useState(false);
+  const [openMenu, setOpenMenu] = useState(null);
   const [anchorEl, setAnchorEl] = useState(null);
-  const [drawerOpen, setDrawerOpen] = useState(false);
   const [mobileAboutOpen, setMobileAboutOpen] = useState(false);
   const [mobileServicesOpen, setMobileServicesOpen] = useState(false);
+  
   const menuButtonRefs = {
     about: useRef(),
     services: useRef(),
@@ -63,7 +208,9 @@ function Navbar() {
     return location.pathname.startsWith(path.split('#')[0]);
   };
 
-  // Desktop submenu open/close handlers (click only)
+  const handleDrawerToggle = () => setMobileOpen(!mobileOpen);
+
+  // Desktop submenu handlers
   const handleMenuToggle = (menu, event) => {
     if (openMenu === menu) {
       setOpenMenu(null);
@@ -73,6 +220,7 @@ function Navbar() {
       setAnchorEl(event.currentTarget);
     }
   };
+
   const handleMenuClose = () => {
     setOpenMenu(null);
     setAnchorEl(null);
@@ -99,268 +247,253 @@ function Navbar() {
     };
   }, [openMenu, anchorEl]);
 
+  const drawer = (
+    <Box sx={{ bgcolor: 'rgba(40, 40, 40, 0.2)', backdropFilter: 'blur(10px)', height: '100%', p: 2 }}>
+      <List sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
+        {navItems.map((item) => (
+          <React.Fragment key={item.path}>
+            {item.submenu ? (
+              <>
+                <ListItem
+                  button
+                  onClick={() => {
+                    if (item.label === 'About') {
+                      setMobileAboutOpen(!mobileAboutOpen);
+                    } else if (item.label === 'Services') {
+                      setMobileServicesOpen(!mobileServicesOpen);
+                    }
+                  }}
+                  sx={{
+                    color: isActive(item.path) ? '#589bfb' : '#282828',
+                    fontWeight: isActive(item.path) ? 'bold' : 'normal',
+                    py: 1.2,
+                    justifyContent: 'center',
+                    transition: 'color 0.3s ease',
+                    '&:hover': { 
+                      color: '#589bfb', 
+                      background: 'transparent',
+                      backgroundColor: 'transparent',
+                    },
+                  }}
+                >
+                  {item.icon}
+                  <ListItemText primary={item.label} />
+                  {item.label === 'About' ? 
+                    (mobileAboutOpen ? <ExpandLess /> : <ExpandMore />) :
+                    (mobileServicesOpen ? <ExpandLess /> : <ExpandMore />)
+                  }
+                </ListItem>
+                <Collapse 
+                  in={item.label === 'About' ? mobileAboutOpen : mobileServicesOpen} 
+                  timeout="auto" 
+                  unmountOnExit
+                >
+                  <List component="div" disablePadding>
+                    {item.submenu.map((subItem) => (
+                      <ListItem
+                        button
+                        key={subItem.label}
+                        component={NavLink}
+                        to={subItem.path}
+                        sx={{ 
+                          pl: 4,
+                          color: '#282828',
+                          '&.active': { color: '#589bfb', fontWeight: 'bold' },
+                          '&:hover': { 
+                            color: '#589bfb', 
+                            background: 'transparent',
+                            backgroundColor: 'transparent',
+                          },
+                        }}
+                        onClick={handleDrawerToggle}
+                      >
+                        <ListItemText primary={subItem.label} />
+                      </ListItem>
+                    ))}
+                  </List>
+                </Collapse>
+              </>
+            ) : (
+              <ListItem
+                component={NavLink}
+                to={item.path}
+                onClick={handleDrawerToggle}
+                sx={{
+                  '&.active': { color: '#589bfb', fontWeight: 'bold' },
+                  color: '#282828',
+                  py: 1.2,
+                  justifyContent: 'center',
+                  transition: 'color 0.3s ease',
+                  '&:hover': { 
+                    color: '#589bfb', 
+                    background: 'transparent',
+                    backgroundColor: 'transparent',
+                  },
+                }}
+              >
+                {item.icon}
+                <ListItemText primary={item.label} />
+              </ListItem>
+            )}
+          </React.Fragment>
+        ))}
+        <ListItem
+          component={NavLink}
+          to="/contact"
+          onClick={handleDrawerToggle}
+          sx={{
+            '&.active': { color: '#589bfb', fontWeight: 'bold' },
+            color: '#282828',
+            py: 1.2,
+            justifyContent: 'center',
+            transition: 'color 0.3s ease',
+            '&:hover': { 
+              color: '#589bfb', 
+              background: 'transparent',
+              backgroundColor: 'transparent',
+            },
+          }}
+        >
+          <ContactMailIcon fontSize="small" sx={{ mr: 1 }} />
+          <ListItemText primary="Contact" />
+        </ListItem>
+      </List>
+      <Divider sx={{ my: 2 }} />
+      <Box sx={{ textAlign: 'center', pb: 2 }}>
+        <Typography variant="body2" color="text.secondary">
+          © {new Date().getFullYear()} LUITE
+        </Typography>
+      </Box>
+    </Box>
+  );
+
   return (
-    <AppBar position="relative" elevation={0} color="default">
-      <Toolbar>
-        <RouterLink to="/" style={{ flexGrow: 1, display: 'flex', alignItems: 'center', textDecoration: 'none' }}>
-          <Box
-            component="img"
-            src="/logo.jpg"
-            alt="LUITE Logo"
-            sx={{ height: 48, width: 'auto', display: 'block' }}
-          />
-        </RouterLink>
-        {/* Desktop Nav */}
-        <Box sx={{ display: { xs: 'none', md: 'flex' }, alignItems: 'center', gap: 1 }}>
-          <Button
-            component={RouterLink}
-            to="/"
-            sx={{
-              color: isActive('/') ? 'primary.main' : 'text.primary',
-              fontWeight: 500,
-              mx: 1,
-              borderBottom: isActive('/') ? '2px solid #589bfb' : '2px solid transparent',
-              borderRadius: 0,
-              transition: 'border 0.2s',
-              '&:hover': {
-                borderBottom: '2px solid #589bfb',
-                bgcolor: 'transparent',
-              },
-            }}
-          >
-            Home
-          </Button>
-          {/* About with submenu */}
-          <Button
-            ref={menuButtonRefs.about}
-            className="desktop-menu-btn"
-            sx={{
-              color: openMenu === 'about' || isActive('/about') ? 'primary.main' : 'text.primary',
-              fontWeight: 500,
-              mx: 1,
-              borderBottom: openMenu === 'about' || isActive('/about') ? '2px solid #589bfb' : '2px solid transparent',
-              borderRadius: 0,
-              transition: 'border 0.2s',
-              '&:hover': {
-                borderBottom: '2px solid #589bfb',
-                bgcolor: 'transparent',
-              },
-              display: 'flex',
-              alignItems: 'center',
-              minWidth: 0
-            }}
-            aria-haspopup="true"
-            aria-controls="about-menu"
-            endIcon={<ArrowDropDownIcon fontSize="small" />}
-            tabIndex={0}
-            onClick={e => handleMenuToggle('about', e)}
-          >
-            About
-          </Button>
-          <Menu
-            id="about-menu"
-            className="desktop-menu"
-            anchorEl={openMenu === 'about' ? anchorEl : null}
-            open={openMenu === 'about'}
-            onClose={handleMenuClose}
-            anchorOrigin={{ vertical: 'bottom', horizontal: 'left' }}
-            transformOrigin={{ vertical: 'top', horizontal: 'left' }}
-          >
-            {aboutMenu.map((item) => (
-              <MenuItem
-                key={item.label}
-                component={RouterLink}
-                to={item.path}
-                onClick={handleMenuClose}
-                sx={{
-                  color: isActive('/about') ? 'primary.main' : 'text.primary',
-                  fontWeight: 500,
-                }}
-              >
-                {item.label}
-              </MenuItem>
-            ))}
-          </Menu>
-          {/* Services with submenu */}
-          <Button
-            ref={menuButtonRefs.services}
-            className="desktop-menu-btn"
-            sx={{
-              color: openMenu === 'services' || isActive('/services') ? 'primary.main' : 'text.primary',
-              fontWeight: 500,
-              mx: 1,
-              borderBottom: openMenu === 'services' || isActive('/services') ? '2px solid #589bfb' : '2px solid transparent',
-              borderRadius: 0,
-              transition: 'border 0.2s',
-              '&:hover': {
-                borderBottom: '2px solid #589bfb',
-                bgcolor: 'transparent',
-              },
-              display: 'flex',
-              alignItems: 'center',
-              minWidth: 0
-            }}
-            aria-haspopup="true"
-            aria-controls="services-menu"
-            endIcon={<ArrowDropDownIcon fontSize="small" />}
-            tabIndex={0}
-            onClick={e => handleMenuToggle('services', e)}
-          >
-            Services
-          </Button>
-          <Menu
-            id="services-menu"
-            className="desktop-menu"
-            anchorEl={openMenu === 'services' ? anchorEl : null}
-            open={openMenu === 'services'}
-            onClose={handleMenuClose}
-            anchorOrigin={{ vertical: 'bottom', horizontal: 'left' }}
-            transformOrigin={{ vertical: 'top', horizontal: 'left' }}
-          >
-            {servicesMenu.map((item) => (
-              <MenuItem
-                key={item.label}
-                component={RouterLink}
-                to={item.path}
-                onClick={handleMenuClose}
-                sx={{
-                  color: isActive('/services') ? 'primary.main' : 'text.primary',
-                  fontWeight: 500,
-                }}
-              >
-                {item.label}
-              </MenuItem>
-            ))}
-          </Menu>
-          <Button
-            component={RouterLink}
-            to="/portfolio"
-            sx={{
-              color: isActive('/portfolio') ? 'primary.main' : 'text.primary',
-              fontWeight: 500,
-              mx: 1,
-              borderBottom: isActive('/portfolio') ? '2px solid #589bfb' : '2px solid transparent',
-              borderRadius: 0,
-              transition: 'border 0.2s',
-              '&:hover': {
-                borderBottom: '2px solid #589bfb',
-                bgcolor: 'transparent',
-              },
-            }}
-          >
-            Portfolio
-          </Button>
-          <Button
-            component={RouterLink}
-            to="/contact"
-            sx={{
-              color: isActive('/contact') ? 'primary.main' : 'text.primary',
-              fontWeight: 500,
-              mx: 1,
-              borderBottom: isActive('/contact') ? '2px solid #589bfb' : '2px solid transparent',
-              borderRadius: 0,
-              transition: 'border 0.2s',
-              '&:hover': {
-                borderBottom: '2px solid #589bfb',
-                bgcolor: 'transparent',
-              },
-            }}
-          >
-            Contact
-          </Button>
-          <Button
-            component={RouterLink}
-            to="/career"
-            sx={{
-              color: isActive('/career') ? 'primary.main' : 'text.primary',
-              fontWeight: 500,
-              mx: 1,
-              borderBottom: isActive('/career') ? '2px solid #589bfb' : '2px solid transparent',
-              borderRadius: 0,
-              transition: 'border 0.2s',
-              '&:hover': {
-                borderBottom: '2px solid #589bfb',
-                bgcolor: 'transparent',
-              },
-            }}
-          >
-            Career
-          </Button>
+    <StyledAppBar position="relative">
+      <Toolbar sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', minHeight: '48px' }}>
+        <Box sx={{ display: 'flex', alignItems: 'center' }}>
+          <StyledLogo component={RouterLink} to="/">
+            <Box
+              component="img"
+              src="/logo.jpg"
+              alt="LUITE Logo"
+              sx={{ height: 40, width: 'auto', display: 'block' }}
+            />
+          </StyledLogo>
         </Box>
-        {/* Mobile Nav */}
-        <Box sx={{ display: { xs: 'flex', md: 'none' } }}>
-          <IconButton color="inherit" edge="end" onClick={() => setDrawerOpen(true)}>
+        
+        <Box
+          sx={{
+            display: { xs: 'none', md: 'flex' },
+            position: 'absolute',
+            left: '50%',
+            transform: 'translateX(-50%)',
+            alignItems: 'center',
+          }}
+        >
+          {navItems.map((item) => (
+            <React.Fragment key={item.path}>
+              {item.submenu ? (
+                <>
+                  <StyledNavButton
+                    ref={menuButtonRefs[item.label.toLowerCase()]}
+                    className={isActive(item.path) ? 'active' : ''}
+                    endIcon={<ArrowDropDownIcon fontSize="small" />}
+                    onClick={(e) => handleMenuToggle(item.label.toLowerCase(), e)}
+                    disableRipple
+                    disableFocusRipple
+                    disableTouchRipple
+                  >
+                    {item.icon}
+                    {item.label}
+                  </StyledNavButton>
+                  <Menu
+                    className="desktop-menu"
+                    anchorEl={openMenu === item.label.toLowerCase() ? anchorEl : null}
+                    open={openMenu === item.label.toLowerCase()}
+                    onClose={handleMenuClose}
+                    anchorOrigin={{ vertical: 'bottom', horizontal: 'left' }}
+                    transformOrigin={{ vertical: 'top', horizontal: 'left' }}
+                  >
+                    {item.submenu.map((subItem) => (
+                      <MenuItem
+                        key={subItem.label}
+                        component={RouterLink}
+                        to={subItem.path}
+                        onClick={handleMenuClose}
+                        sx={{
+                          color: isActive(subItem.path) ? 'primary.main' : 'text.primary',
+                          fontWeight: isActive(subItem.path) ? 600 : 500,
+                          '&:hover': {
+                            color: 'primary.main',
+                            backgroundColor: 'transparent',
+                          },
+                        }}
+                      >
+                        {subItem.label}
+                      </MenuItem>
+                    ))}
+                  </Menu>
+                </>
+              ) : (
+                <StyledNavButton
+                  component={NavLink}
+                  to={item.path}
+                  className={({ isActive }) => (isActive ? 'active' : '')}
+                  disableRipple
+                  disableFocusRipple
+                  disableTouchRipple
+                >
+                  {item.icon}
+                  {item.label}
+                </StyledNavButton>
+              )}
+            </React.Fragment>
+          ))}
+        </Box>
+        
+        <Box sx={{ display: 'flex', alignItems: 'center' }}>
+          <StyledContactButton
+            component={NavLink}
+            to="/contact"
+            className={({ isActive }) => (isActive ? 'active' : '')}
+            sx={{ display: { xs: 'none', md: 'flex' } }}
+            disableRipple
+            disableFocusRipple
+            disableTouchRipple
+          >
+            <ContactMailIcon fontSize="small" sx={{ mr: 1 }} />
+            Contact
+          </StyledContactButton>
+          <StyledIconButton
+            color="inherit"
+            aria-label="open drawer"
+            onClick={handleDrawerToggle}
+            sx={{ display: { md: 'none' }, ml: 1 }}
+            disableRipple
+            disableFocusRipple
+            disableTouchRipple
+          >
             <MenuIcon />
-          </IconButton>
-          <Drawer anchor="right" open={drawerOpen} onClose={() => setDrawerOpen(false)}>
-            <Box sx={{ width: 260, pt: 2 }} role="presentation">
-              <List>
-                <ListItem button component={RouterLink} to="/" onClick={() => setDrawerOpen(false)}>
-                  <ListItemText primary="Home" />
-                </ListItem>
-                {/* About with collapse */}
-                <ListItem button onClick={() => setMobileAboutOpen(!mobileAboutOpen)}>
-                  <ListItemText primary="About" />
-                  {mobileAboutOpen ? <ExpandLess /> : <ExpandMore />}
-                </ListItem>
-                <Collapse in={mobileAboutOpen} timeout="auto" unmountOnExit>
-                  <List component="div" disablePadding>
-                    {aboutMenu.map((item) => (
-                      <ListItem
-                        button
-                        key={item.label}
-                        component={RouterLink}
-                        to={item.path}
-                        sx={{ pl: 4 }}
-                        onClick={() => setDrawerOpen(false)}
-                      >
-                        <ListItemText primary={item.label} />
-                      </ListItem>
-                    ))}
-                  </List>
-                </Collapse>
-                {/* Services with collapse */}
-                <ListItem button onClick={() => setMobileServicesOpen(!mobileServicesOpen)}>
-                  <ListItemText primary="Services" />
-                  {mobileServicesOpen ? <ExpandLess /> : <ExpandMore />}
-                </ListItem>
-                <Collapse in={mobileServicesOpen} timeout="auto" unmountOnExit>
-                  <List component="div" disablePadding>
-                    {servicesMenu.map((item) => (
-                      <ListItem
-                        button
-                        key={item.label}
-                        component={RouterLink}
-                        to={item.path}
-                        sx={{ pl: 4 }}
-                        onClick={() => setDrawerOpen(false)}
-                      >
-                        <ListItemText primary={item.label} />
-                      </ListItem>
-                    ))}
-                  </List>
-                </Collapse>
-                <ListItem button component={RouterLink} to="/portfolio" onClick={() => setDrawerOpen(false)}>
-                  <ListItemText primary="Portfolio" />
-                </ListItem>
-                <ListItem button component={RouterLink} to="/contact" onClick={() => setDrawerOpen(false)}>
-                  <ListItemText primary="Contact" />
-                </ListItem>
-                <ListItem button component={RouterLink} to="/career" onClick={() => setDrawerOpen(false)}>
-                  <ListItemText primary="Career" />
-                </ListItem>
-              </List>
-              <Divider sx={{ my: 2 }} />
-              <Box sx={{ textAlign: 'center', pb: 2 }}>
-                <Typography variant="body2" color="text.secondary">
-                  © {new Date().getFullYear()} LUITE
-                </Typography>
-              </Box>
-            </Box>
-          </Drawer>
+          </StyledIconButton>
         </Box>
       </Toolbar>
-    </AppBar>
+      
+      <Drawer
+        anchor="right"
+        open={mobileOpen}
+        onClose={handleDrawerToggle}
+        sx={{
+          '& .MuiDrawer-paper': {
+            bgcolor: 'rgba(40, 40, 40, 0.2)',
+            backdropFilter: 'blur(10px)',
+            width: '250px',
+            borderLeft: '1px solid rgba(255, 255, 255, 0.1)',
+          },
+        }}
+      >
+        {drawer}
+      </Drawer>
+    </StyledAppBar>
   );
 }
 
