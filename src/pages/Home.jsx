@@ -143,6 +143,73 @@ function Home() {
         </Box>
       </Box>
 
+      {/* What We Do Section */}
+      <Box sx={{ mb: 8 }}>
+        <Typography variant="h3" sx={{ fontWeight: 700, mb: 4, textAlign: 'center' }}>
+          What We Do?
+        </Typography>
+        <Grid container   spacing={4} alignItems="stretch" justifyContent='center'>
+          {/* First Service - Left (secondary.main) */}
+          <Grid item xs={12} md={6}>
+            <Box sx={{
+              bgcolor: 'secondary.main',
+              color: 'white',
+              borderRadius: 3,
+              p: { xs: 3, md: 5 },
+              height: '100%',
+              display: 'flex',
+              flexDirection: 'column',
+              justifyContent: 'center',
+              boxShadow: 2,
+            }}>
+              <Typography variant="h4" sx={{ fontWeight: 700, mb: 2 }}>
+                Web Development
+              </Typography>
+              <Typography variant="body1" sx={{ mb: 2 }}>
+                Custom websites and web applications built with modern technologies.
+              </Typography>
+              <ul style={{ margin: 0, paddingLeft: 18 }}>
+                <li>Responsive design for all devices</li>
+                <li>SEO optimization</li>
+                <li>Content management systems</li>
+                <li>E-commerce integration</li>
+                <li>Performance optimization</li>
+                <li>Security implementation</li>
+              </ul>
+            </Box>
+          </Grid>
+          {/* Second Service - Right (primary.main) */}
+          <Grid item xs={12} md={6}>
+            <Box sx={{
+              bgcolor: 'primary.main',
+              color: 'white',
+              borderRadius: 3,
+              p: { xs: 3, md: 5 },
+              height: '100%',
+              display: 'flex',
+              flexDirection: 'column',
+              justifyContent: 'center',
+              boxShadow: 2,
+            }}>
+              <Typography variant="h4" sx={{ fontWeight: 700, mb: 2 }}>
+                Mobile App Development
+              </Typography>
+              <Typography variant="body1" sx={{ mb: 2 }}>
+                Native and cross-platform mobile applications for iOS and Android.
+              </Typography>
+              <ul style={{ margin: 0, paddingLeft: 18 }}>
+                <li>iOS and Android development</li>
+                <li>Cross-platform solutions</li>
+                <li>App store optimization</li>
+                <li>Push notifications</li>
+                <li>Offline functionality</li>
+                <li>Performance monitoring</li>
+              </ul>
+            </Box>
+          </Grid>
+        </Grid>
+      </Box>
+
       {/* About/Overview Section */}
       <Container sx={{ mb: 8 }}>
         <Typography variant="h3" sx={{ fontWeight: 600, mb: 2 }}>

@@ -383,7 +383,7 @@ function Navbar() {
           <StyledLogo component={RouterLink} to="/">
             <Box
               component="img"
-              src="/logo.jpg"
+              src="/L.png"
               alt="LUITE Logo"
               sx={{ height: 40, width: 'auto', display: 'block' }}
             />

@@ -8,7 +8,7 @@ import XIcon from '@mui/icons-material/X';
 const teamMembers = [
   {
     name: 'Mahil Sonowal',
-    role: 'Executive Director',
+    role: 'Frontend Developer',
     img: '/mahil.jpg',
     linkedin: '',
     instagram: '',
