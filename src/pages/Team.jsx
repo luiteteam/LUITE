@@ -26,7 +26,7 @@ const teamMembers = [
   {
     name: 'Siddhartha Sonowal',
     role: 'Frontend Developer',
-    // img: '',
+    img: '/siddhartha.jpg',
     // linkedin: '',
     team: 'Engineering Team',
   },
@@ -89,7 +89,10 @@ function Team() {
     <Box>
       <Container sx={{ pt: 8, pb: 4 }}>
         <Typography variant="h3" align="center" sx={{ fontWeight: 700, mb: 1 }}>
-          Our Team
+          Our{' '}
+          <Box component="span" sx={{ color: 'primary.main', display: 'inline' }}>
+            Team
+          </Box>
         </Typography>
         <Typography align="center" variant="h6" sx={{ mb: 6, fontWeight: 400 }}>
           Meet our outstanding team – a synergy of talent, creativity, and dedication, crafting success together.
