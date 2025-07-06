@@ -196,6 +196,7 @@ function Navbar() {
   const [anchorEl, setAnchorEl] = useState(null);
   const [mobileAboutOpen, setMobileAboutOpen] = useState(false);
   const [mobileServicesOpen, setMobileServicesOpen] = useState(false);
+  const [showDesktopHamburger, setShowDesktopHamburger] = useState(false);
   
   const menuButtonRefs = {
     about: useRef(),
@@ -246,6 +247,14 @@ function Navbar() {
       document.removeEventListener('mousedown', handleClickOutside);
     };
   }, [openMenu, anchorEl]);
+
+  React.useEffect(() => {
+    const handleScroll = () => {
+      setShowDesktopHamburger(window.scrollY > 50);
+    };
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
 
   const drawer = (
     <Box sx={{ bgcolor: 'rgba(40, 40, 40, 0.2)', backdropFilter: 'blur(10px)', height: '100%', p: 2 }}>
@@ -468,7 +477,13 @@ function Navbar() {
             color="inherit"
             aria-label="open drawer"
             onClick={handleDrawerToggle}
-            sx={{ display: { md: 'none' }, ml: 1 }}
+            sx={{
+              display: {
+                xs: 'flex',
+                md: showDesktopHamburger ? 'flex' : 'none'
+              },
+              ml: 1
+            }}
             disableRipple
             disableFocusRipple
             disableTouchRipple
@@ -486,13 +501,43 @@ function Navbar() {
           '& .MuiDrawer-paper': {
             bgcolor: 'rgba(40, 40, 40, 0.2)',
             backdropFilter: 'blur(10px)',
-            width: '250px',
+            width: { xs: '250px', md: '420px' },
             borderLeft: '1px solid rgba(255, 255, 255, 0.1)',
           },
         }}
       >
         {drawer}
       </Drawer>
+
+      {showDesktopHamburger && (
+        <Box
+          sx={{
+            display: { xs: 'none', md: 'flex' },
+            position: 'fixed',
+            top: 24,
+            right: 32,
+            zIndex: 1301, // above AppBar
+          }}
+        >
+          <StyledIconButton
+            color="inherit"
+            aria-label="open drawer"
+            onClick={handleDrawerToggle}
+            sx={{
+              background: '#fff',
+              borderRadius: '50%',
+              boxShadow: 3,
+              width: 56,
+              height: 56,
+              '&:hover': {
+                background: '#eef3f9',
+              },
+            }}
+          >
+            <MenuIcon />
+          </StyledIconButton>
+        </Box>
+      )}
     </StyledAppBar>
   );
 }
