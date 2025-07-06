@@ -13,7 +13,7 @@ const navItems = [
 
 function Navbar() {
   return (
-    <AppBar position="sticky" elevation={0} color="default">
+    <AppBar position="relative" elevation={0} color="default">
       <Toolbar>
         <Typography
           variant="h6"
