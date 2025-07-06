@@ -31,6 +31,16 @@ const teamMembers = [
     team: 'Engineering Team',
   },
   {
+    name: 'Gaurav Debnath',
+    role: 'Project Manager',
+    img: '/gaurav.jpg',
+    linkedin: '',
+    instagram: '',
+    facebook: '',
+    x: '',
+    team: 'Engineering Team',
+  },
+  {
     name: 'Niraj Nil Dutta',
     role: 'Client Manager',
     img: '/niraj.jpg',
