@@ -97,7 +97,7 @@ function Home() {
           textAlign: { xs: 'left', md: 'left' },
           px: { xs: 2, sm: 3, md: 0 },
         }}>
-          <Typography variant="subtitle1" sx={{ color: 'green', fontWeight: 700, mb: 2, letterSpacing: 1, fontSize: { xs: '0.75rem', sm: '1.1rem' } }}>
+          <Typography variant="subtitle1" sx={{ color: '#FE9093', fontWeight: 700, mb: 2, letterSpacing: 1, fontSize: { xs: '0.75rem', sm: '1.1rem' } }}>
             EMPOWERING DIGITAL INNOVATION
           </Typography>
           <Typography
